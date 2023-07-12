@@ -130,7 +130,7 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
                     skin.skinPortPrice = float(month_average)
                     skin.profit = skin.skinPortPrice * 0.88 - skin.buffPrice
                     skin.profitPercentage = skin.profit / skin.buffPrice * 100
-                    print(f"Name: {skin.name} Condition: {skin.condition} Profit: {skin.profitPercentage} Skinport Price)")
+                    #print(f"Name: {skin.name} Condition: {skin.condition} Profit: {skin.profitPercentage} Skinport Price)")
 
     except (requests.exceptions.RequestException, KeyError, TypeError):
         return []
