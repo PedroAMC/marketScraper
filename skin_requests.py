@@ -78,6 +78,7 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
         'sec-ch-ua-platform': '"Android"',
     }
 
+
     params = {
         'game': 'csgo',
         'page_num': '1',
@@ -95,43 +96,43 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
     encodedData = str(base64.b64encode(clientData.encode("utf-8")), "utf-8")
     authorizationHeaderString = f"Basic {encodedData}"
 
-    response = requests.get('https://buff.163.com/api/market/goods', params=params, cookies=cookies, headers=headers)
-
-    queryString = ""
-    #print(response.json())
-    for item in response.json()["data"]["items"]:
-        short_name = item["short_name"]
-        buff_price = float(item["sell_min_price"])*0.12610534
-        condition = item["goods_info"]["info"]["tags"]["exterior"]["localized_name"]
-        icon_url = item["goods_info"]["icon_url"]
-        queryString += f"{short_name} ({condition}),"
-        skin = Skin(short_name, buff_price, condition)
-        skin.icon_url = icon_url
-
-        querySkins.append(skin)
+    try:
+        response = requests.get('https://buff.163.com/api/market/goods', params=params, cookies=cookies,
+                                headers=headers)
 
 
-    queryString = queryString[:-1]
-    #print(queryString)
+        for item in response.json()["data"]["items"]:
+            short_name = item["short_name"]
+            buff_price = float(item["sell_min_price"]) * 0.12610534
+            condition = item["goods_info"]["info"]["tags"]["exterior"]["localized_name"]
+            icon_url = item["goods_info"]["icon_url"]
+            skin = Skin(short_name, buff_price, condition)
+            skin.icon_url = icon_url
 
-    r = requests.get("https://api.skinport.com/v1/sales/history", headers={
-    "authorization": authorizationHeaderString}, params={
-            #"market_hash_name": queryString,
+            querySkins.append(skin)
+
+        r = requests.get("https://api.skinport.com/v1/sales/history", headers={
+            "authorization": authorizationHeaderString}, params={
+            # "market_hash_name": queryString,
             "app_id": 730,
             "currency": "EUR"
 
         }).json()
 
-    for item in r:
-        for skin in querySkins:
-            skin_name = skin.name + " (" + skin.condition + ")"
-            if skin_name == item["market_hash_name"]:
-                #print(item)
-                month_average = item["last_30_days"]["avg"]
-                skin.skinPortPrice = float(month_average)
-                skin.profit = skin.skinPortPrice*0.88 - skin.buffPrice
-                skin.profitPercentage = skin.profit/skin.buffPrice*100
-                #print(f"Name: {skin.name} Condition: {skin.condition} Buff Price: {skin.buffPrice} Skinport Price: {month_average} Profit: {skin.profit}€ Percentage: {skin.profitPercentage}%")
+        for item in r:
+            for skin in querySkins:
+                skin_name = skin.name + " (" + skin.condition + ")"
+                if skin_name == item["market_hash_name"]:
+                    # print(item)
+                    month_average = item["last_30_days"]["avg"]
+                    skin.skinPortPrice = float(month_average)
+                    skin.profit = skin.skinPortPrice * 0.88 - skin.buffPrice
+                    skin.profitPercentage = skin.profit / skin.buffPrice * 100
+                    # print(f"Name: {skin.name} Condition: {skin.condition} Buff Price: {skin.buffPrice} Skinport Price:
+
+    except (requests.exceptions.RequestException, KeyError, TypeError):
+        return []
+
     return querySkins
 
 
