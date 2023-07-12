@@ -10,18 +10,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-chrome_options = Options()
-chrome_options.add_argument("--headless")  # Run Chrome in headless mode
-chrome_options.add_argument("start-maximized");
-chrome_options.add_argument("disable-infobars");
-chrome_options.add_argument("--disable-extensions");
-chrome_options.add_argument("--disable-gpu");
-chrome_options.add_argument("--disable-dev-shm-usage");
-chrome_options.add_argument("--user-data-dir=C:\\Users\\pcped\\AppData\\Local\\Google\\Chrome\\User Data")
-chrome_options.add_argument('--profile-directory=Default')
-
-
-driver = webdriver.Chrome(options=chrome_options)
 
 
 weapons = {
@@ -54,37 +42,6 @@ class Skin:
         self.profitPercentage = 0
         self.iconUrl = "";
 
-
-
-
-
-
-def get_skins(weapon_name, condition, min_price, max_price):
-    print("running scraper")
-    weapon_name = weapons[weapon_name]
-    condition = conditions[condition]
-    if (weapon_name != "knife" or weapon_name != "hands"):
-        driver.get(
-            f"https://buff.163.com/market/csgo#tab=selling&page_num=1&category={weapon_name}&min_price={min_price}&max_price={max_price}&exterior={condition}")
-    else:
-        driver.get(
-            f"https://buff.163.com/market/csgo#tab=selling&page_num=1&category_group={weapon_name}&min_price={min_price}&max_price={max_price}&exterior={condition}")
-
-    user_agent = driver.execute_script("return navigator.userAgent;")
-    print(user_agent)
-    #div_element = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "j_list_card")))
-    print(driver.title)
-    print(driver.current_url)
-
-    print(user_agent)
-
-    #weapon_cards_list = div_element.find_element(By.TAG_NAME, "ul")
-    #weapon_cards = weapon_cards_list.find_elements_by_css_selector("li")
-
-    #for weapon_card in weapon_cards:
-       #print(weapon_card.text)
-
-    #driver.close()
 
 def get_skins_bs4(weapon_name, condition, min_price, max_price):
     querySkins = []

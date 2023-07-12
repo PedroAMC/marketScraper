@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
-from skin_requests import get_skins, get_skins_bs4
+from skin_requests import get_skins_bs4
 from threading import Timer
 
 
