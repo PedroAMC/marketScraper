@@ -23,6 +23,7 @@ def home():
 @views.route("/login", methods=["GET", "POST"])
 def login():
     global authenticated
+    authenticated = False
     if authenticated:
         return redirect(url_for("views.home"))
 

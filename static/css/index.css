@@ -34,6 +34,10 @@ h2 {
     color: #FF8C00;;
 }
 
+h3 {
+    color: white;
+}
+
 body{
     background-color: #1D2124;
     font-family: 'FreeMono', sans-serif;
