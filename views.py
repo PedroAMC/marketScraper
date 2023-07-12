@@ -9,13 +9,14 @@ views = Blueprint(__name__, "views")
 PASSWORD = "aiaiomano"
 authenticated = False
 
+weapons = ["AK-47", "AWP", "M4A4", "M4A1-S", "USP-S", "Glock-18", "Desert Eagle"]
+conditions = ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"]
+
 @views.route("/")
 def home():
     global authenticated
     if not authenticated:
         return redirect(url_for("views.login"))
-    weapons = ["AK-47", "AWP", "M4A4", "M4A1-S", "USP-S", "Glock-18", "Desert Eagle"]
-    conditions = ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"]
 
     return render_template("index.html", weapons=weapons, conditions=conditions)
 
@@ -47,6 +48,12 @@ def weapon():
     sortedSkins = sorted(skins, key=lambda x: x.profitPercentage, reverse=True)
     sortedSkins = [skin for skin in sortedSkins if skin.profitPercentage <= 55]
     sortedSkins = sortedSkins[:10]
+
+    if not sortedSkins:
+        # Skins list is empty, return an appropriate response or redirect
+        error_message = "No skins available or search limit reached"
+
+        return render_template("index.html", weapons=weapons, conditions=conditions, error=error_message)
 
     return render_template("weapon.html", weapon_name=weapon_name, condition=condition, min_price=min_price, max_price=max_price, skins=sortedSkins)
 

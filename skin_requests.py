@@ -121,14 +121,16 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
 
         for item in r:
             for skin in querySkins:
+                #print(item["market_hash_name"])
                 skin_name = skin.name + " (" + skin.condition + ")"
+                #print(skin_name)
                 if skin_name == item["market_hash_name"]:
-                    # print(item)
+                    #print(item)
                     month_average = item["last_30_days"]["avg"]
                     skin.skinPortPrice = float(month_average)
                     skin.profit = skin.skinPortPrice * 0.88 - skin.buffPrice
                     skin.profitPercentage = skin.profit / skin.buffPrice * 100
-                    # print(f"Name: {skin.name} Condition: {skin.condition} Buff Price: {skin.buffPrice} Skinport Price:
+                    print(f"Name: {skin.name} Condition: {skin.condition} Profit: {skin.profitPercentage} Skinport Price)")
 
     except (requests.exceptions.RequestException, KeyError, TypeError):
         return []
