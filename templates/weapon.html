@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/weapon.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ weapon_name }}</title>
+</head>
+<body>
+<h1 id="info">{{ weapon_name }} {{ condition }} {{ min_price}} ¥ - {{ max_price }} ¥</h1>
+<br><br>
+<div id="skins">
+    {% for skin in skins %}
+    <div class="skin-container">
+    <div class="skin">
+        <div class="skin-image">
+        <img src="{{ skin.icon_url }}" alt="{{ skin.name }} Icon">
+      </div>
+        <h2>{{ skin.name }}</h2>
+        <p>Buff Price: {{ '%.2f'|format(skin.buffPrice) }}€</p>
+        <p>Skinport Price: {{ '%.2f'|format(skin.skinPortPrice) }}€</p>
+        <p class="profit" >Profit: {{ '%.2f'|format(skin.profit) }}€</p>
+        <p class="profit-percentage">Profit Percentage: {{ '%.2f'|format(skin.profitPercentage) }}%</p>
+    </div>
+        </div>
+{% endfor %}
+</div>
+
+<br><br>
+<button id="homeBtn" onclick="goToHomePage()">Back</button>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='weapon.js')}}"></script>
+<script type="text/javascript">
+    function goToHomePage() {
+        window.location.href = "/";
+    }
+</script>
+</body>
+</html>

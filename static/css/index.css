@@ -1,0 +1,56 @@
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+
+}
+
+.weapon_select{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.number_input input[type="number"] {
+    width: 50px;
+    font-size: 10px;
+    margin-right: 125px;
+
+}
+
+
+
+#submit_button {
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #FF8C00;;
+}
+
+body{
+    background-color: #1D2124;
+    font-family: 'FreeMono', sans-serif;
+}
+
+div{
+    /*background-color: #23272B;*/
+}
+
+.monitor_button{
+    background-color: #FF8C00;
+    color: #1D2124;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}

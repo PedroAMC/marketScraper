@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+
+    <h1>Market Analyser</h1>
+    <br>
+    <div class="weapon_select">
+    <form action="/weapon" method="GET">
+        <label for="weapon">Select a weapon:</label>
+        <select id="weapon" name="weapon">
+            {% for weapon in weapons %}
+            <option value="{{ weapon }}">{{ weapon }}</option>
+            {% endfor %}
+        </select>
+        <label for="condition">Condition:</label>
+        <select id="condition" name="condition">
+            {% for condition in conditions %}
+            <option value="{{ condition }}">{{ condition }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+       <div class="number_input">
+            <label for="min_price">Min ¥:</label>
+            <input type="number" id="min_price" name="min_price" placeholder="¥" required>
+            <label for="max_price">Max ¥:</label>
+            <input type="number" id="max_price" name="max_price" placeholder="¥" required>
+        </div>
+        <br><br>
+        <input id="submit_button" type="submit" name="weapon_name" value="Select">
+    </form>
+    </div>
+
+
+</body>
+</html>
