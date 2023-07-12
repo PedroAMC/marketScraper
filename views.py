@@ -14,7 +14,7 @@ def home():
     global authenticated
     if not authenticated:
         return redirect(url_for("views.login"))
-    weapons = ["AK-47", "AWP", "M4A4", "M4A1-S", "USP-S", "Glock-18", "Desert Eagle", "Knife", "Gloves"]
+    weapons = ["AK-47", "AWP", "M4A4", "M4A1-S", "USP-S", "Glock-18", "Desert Eagle"]
     conditions = ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"]
 
     return render_template("index.html", weapons=weapons, conditions=conditions)
