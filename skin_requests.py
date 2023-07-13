@@ -21,6 +21,7 @@ weapons = {
     "Glock-18": "weapon_glock",
     "Desert Eagle": "weapon_deagle",
     "MP9": "weapon_mp9",
+    "MAC-10": "weapon_mac10",
     "Knife": "knife",
     "Gloves": "hands"
 }
