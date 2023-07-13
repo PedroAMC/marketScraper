@@ -9,7 +9,7 @@ views = Blueprint(__name__, "views")
 PASSWORD = "aiaiomano"
 authenticated = False
 
-weapons = ["AK-47", "AWP", "M4A4", "M4A1-S", "USP-S", "Glock-18", "Desert Eagle"]
+weapons = ["AK-47", "AWP", "M4A4", "M4A1-S", "USP-S", "Glock-18", "Desert Eagle", "MP9"]
 conditions = ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"]
 
 @views.route("/")
