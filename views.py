@@ -6,7 +6,7 @@ from threading import Timer
 
 views = Blueprint(__name__, "views")
 
-PASSWORD = "aiaiomano"
+PASSWORD = "passe"
 authenticated = False
 
 weapons = ["AK-47", "AWP", "M4A4", "M4A1-S", "USP-S", "Glock-18", "Desert Eagle", "MP9", "MAC-10", "P250"]
