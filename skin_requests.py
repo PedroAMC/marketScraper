@@ -53,30 +53,29 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
 
     print("running bs4")
 
-
     cookies = {
         'Device-Id': 'G4fFCRE0U92s5dsUF5q8',
         'P_INFO': '351-911556587|1685714431|1|netease_buff|00&99|null&null&null#PT&null#10#0|&0||351-911556587',
         'Locale-Supported': 'en',
         'game': 'csgo',
-        'qr_code_verify_ticket': 'be5CAuY0913e9edc4805ae380dd8c47af988',
-        'remember_me': 'U1103613490|IvTgODLkmEeZwFChbCzshRUTf8wTU6Qp',
-        'session': '1-kzDt6A7o9YjXYQk3MWcCIoZkc_jAOgjZZf8fJUnnYDdN2030653802',
-        'csrf_token': 'IjlhOWQxZTQ0M2IzNmUzYWMzNzU0YWFiMTEwOGIzMTQ3ZjIxNTE2ZjEi.F4-sww.1Jon4R57YrBQO-dQvndDx70lNtc',
+        'qr_code_verify_ticket': '4afP8V1bc08f05d0a41e76d35ddbbc412dba',
+        'remember_me': 'U1103613490|xtutxW1ofFbvLHMzWcTPdZNeVhWajkUn',
+        'session': '1-X7g_JYBGT-SVQ3jzmKJZUdScFXdAUPM1n2E4Fx5UKua62030653802',
+        'csrf_token': 'Ijc1M2U5YjM0ZDFjZjkwMmI1MmExMzAyYTE0YmYwYzA4NWY3MTczYTki.F7VYGQ.ZR0sIDr7kzxOnunsUvpcRoe3sbY',
     }
 
     headers = {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Language': 'en-US,en;q=0.9',
         'Connection': 'keep-alive',
-        # 'Cookie': 'Device-Id=G4fFCRE0U92s5dsUF5q8; P_INFO=351-911556587|1685714431|1|netease_buff|00&99|null&null&null#PT&null#10#0|&0||351-911556587; Locale-Supported=en; game=csgo; qr_code_verify_ticket=be5CAuY0913e9edc4805ae380dd8c47af988; remember_me=U1103613490|IvTgODLkmEeZwFChbCzshRUTf8wTU6Qp; session=1-kzDt6A7o9YjXYQk3MWcCIoZkc_jAOgjZZf8fJUnnYDdN2030653802; csrf_token=IjlhOWQxZTQ0M2IzNmUzYWMzNzU0YWFiMTEwOGIzMTQ3ZjIxNTE2ZjEi.F4-sww.1Jon4R57YrBQO-dQvndDx70lNtc',
+        # 'Cookie': 'Device-Id=G4fFCRE0U92s5dsUF5q8; P_INFO=351-911556587|1685714431|1|netease_buff|00&99|null&null&null#PT&null#10#0|&0||351-911556587; Locale-Supported=en; game=csgo; qr_code_verify_ticket=4afP8V1bc08f05d0a41e76d35ddbbc412dba; remember_me=U1103613490|xtutxW1ofFbvLHMzWcTPdZNeVhWajkUn; session=1-X7g_JYBGT-SVQ3jzmKJZUdScFXdAUPM1n2E4Fx5UKua62030653802; csrf_token=Ijc1M2U5YjM0ZDFjZjkwMmI1MmExMzAyYTE0YmYwYzA4NWY3MTczYTki.F7VYGQ.ZR0sIDr7kzxOnunsUvpcRoe3sbY',
         'Referer': 'https://buff.163.com/market/csgo',
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-origin',
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Mobile Safari/537.36',
         'X-Requested-With': 'XMLHttpRequest',
-        'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"',
+        'sec-ch-ua': '"Not/A)Brand";v="99", "Google Chrome";v="115", "Chromium";v="115"',
         'sec-ch-ua-mobile': '?1',
         'sec-ch-ua-platform': '"Android"',
     }
@@ -90,7 +89,7 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
         'max_price': max_price,
         'exterior': condition,
         'use_suggestion': '0',
-        '_': '1689131300601',
+        '_': '1691599786938',
     }
 
     clientId = "063ed991124a407bb6809f1bb6b637ea"
@@ -105,6 +104,7 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
 
 
         for item in response.json()["data"]["items"]:
+            print(item["market_hash_name"])
             short_name = item["short_name"]
             buff_price = float(item["sell_min_price"]) * 0.12610534
             condition = item["goods_info"]["info"]["tags"]["exterior"]["localized_name"]
@@ -114,6 +114,7 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
 
             querySkins.append(skin)
 
+        print("skinport query")
         r = requests.get("https://api.skinport.com/v1/sales/history", headers={
             "authorization": authorizationHeaderString}, params={
             # "market_hash_name": queryString,
@@ -121,14 +122,15 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
             "currency": "EUR"
 
         }).json()
-
+        print("skinport query done")
         for item in r:
+            print(item["market_hash_name"])
             for skin in querySkins:
                 #print(item["market_hash_name"])
                 skin_name = skin.name + " (" + skin.condition + ")"
                 #print(skin_name)
                 if skin_name == item["market_hash_name"]:
-                    #print(item)
+                    print(item)
                     month_average = item["last_30_days"]["avg"]
                     skin.skinPortPrice = float(month_average)
                     skin.profit = skin.skinPortPrice * 0.88 - skin.buffPrice
