@@ -1,6 +1,6 @@
 from flask import Flask
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from your_flask_app import app as your_app  # Replace with the actual name of your Flask app
+from app import app as your_app
 
 app = Flask(__name__)
 
