@@ -1,13 +1,11 @@
-from flask import Flask, Blueprint
+from flask import Flask
+from views import views
 
 app = Flask(__name__)
-
-# Define your Flask routes
-@app.route('/myapp/')
-def myapp_home():
-    return "Hello, this is my Flask app hosted under /myapp!"
-
-# You can define more routes here
+app.register_blueprint(views, url_prefix="/")
 
 if __name__ == '__main__':
-    app.run(debug=True, port=2224)
+    print("running")
+    app.run(debug=True, port=8023)
+
+
