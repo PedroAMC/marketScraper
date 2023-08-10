@@ -1,13 +1,13 @@
-from flask import Flask
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from app import app as your_app
+from flask import Flask, Blueprint
 
 app = Flask(__name__)
 
-# Mount your Flask app under the desired URL prefix
-app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
-    '/myapp': your_app,
-})
+# Define your Flask routes
+@app.route('/myapp/')
+def myapp_home():
+    return "Hello, this is my Flask app hosted under /myapp!"
+
+# You can define more routes here
 
 if __name__ == '__main__':
     app.run(debug=True, port=2224)
