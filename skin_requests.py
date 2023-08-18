@@ -48,30 +48,11 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
     print("running bs4")
 
     cookies = {
-        'Device-Id': 'G4fFCRE0U92s5dsUF5q8',
-        'P_INFO': '351-911556587|1685714431|1|netease_buff|00&99|null&null&null#PT&null#10#0|&0||351-911556587',
-        'Locale-Supported': 'en',
-        'game': 'csgo',
-        'qr_code_verify_ticket': '4afP8V1bc08f05d0a41e76d35ddbbc412dba',
-        'remember_me': 'U1103613490|xtutxW1ofFbvLHMzWcTPdZNeVhWajkUn',
-        'session': '1-X7g_JYBGT-SVQ3jzmKJZUdScFXdAUPM1n2E4Fx5UKua62030653802',
-        'csrf_token': 'Ijc1M2U5YjM0ZDFjZjkwMmI1MmExMzAyYTE0YmYwYzA4NWY3MTczYTki.F7VYGQ.ZR0sIDr7kzxOnunsUvpcRoe3sbY',
+        # fill with your cookies
     }
 
     headers = {
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Connection': 'keep-alive',
-        # 'Cookie': 'Device-Id=G4fFCRE0U92s5dsUF5q8; P_INFO=351-911556587|1685714431|1|netease_buff|00&99|null&null&null#PT&null#10#0|&0||351-911556587; Locale-Supported=en; game=csgo; qr_code_verify_ticket=4afP8V1bc08f05d0a41e76d35ddbbc412dba; remember_me=U1103613490|xtutxW1ofFbvLHMzWcTPdZNeVhWajkUn; session=1-X7g_JYBGT-SVQ3jzmKJZUdScFXdAUPM1n2E4Fx5UKua62030653802; csrf_token=Ijc1M2U5YjM0ZDFjZjkwMmI1MmExMzAyYTE0YmYwYzA4NWY3MTczYTki.F7VYGQ.ZR0sIDr7kzxOnunsUvpcRoe3sbY',
-        'Referer': 'https://buff.163.com/market/csgo',
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'same-origin',
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Mobile Safari/537.36',
-        'X-Requested-With': 'XMLHttpRequest',
-        'sec-ch-ua': '"Not/A)Brand";v="99", "Google Chrome";v="115", "Chromium";v="115"',
-        'sec-ch-ua-mobile': '?1',
-        'sec-ch-ua-platform': '"Android"',
+       # fill with your headers
     }
 
 
@@ -86,8 +67,8 @@ def get_skins_bs4(weapon_name, condition, min_price, max_price):
         '_': '1691599786938',
     }
 
-    clientId = "063ed991124a407bb6809f1bb6b637ea"
-    clientSecret = "tRyVL1b3v86RJpxctrl+zkx13JXIL6fu6C5Z+sUiwg8K+baIHiWcEeemqUN2Ug2W01Km968Dw5VhGKm0let4ew=="
+    clientId = ""
+    clientSecret = ""
     clientData = f"{clientId}:{clientSecret}"
     encodedData = str(base64.b64encode(clientData.encode("utf-8")), "utf-8")
     authorizationHeaderString = f"Basic {encodedData}"
